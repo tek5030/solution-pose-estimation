@@ -14,7 +14,7 @@ public:
   /// \param world_point Corresponding world point in world coordinate system.
   CameraProjectionMeasurement(const Eigen::Vector2d& normalized_plane_point, const Eigen::Vector3d& world_point);
 
-  /// \brief Linearized the measurement prediction function at the current state.
+  /// \brief Linearize the measurement prediction function at the current state.
   /// \param current_state Current estimate of the camera pose T_w_c.
   LinearizedCameraProjectionMeasurement linearize(const Sophus::SE3d& current_state) const;
 

@@ -1,11 +1,11 @@
-#include "lab_6.h"
+#include "solution_pose_estimation.h"
 #include <iostream>
 
 int main()
 {
   try
   {
-    lab6();
+    runPoseEstimationSolution();
   }
   catch (const std::exception& e)
   {

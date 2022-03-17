@@ -1,6 +1,6 @@
 cmake_minimum_required( VERSION 3.5.1 )
 
-project(lab_6_pose)
+project(solution-pose-estimation)
 
 # Compiler flags
 if (MSVC)
@@ -16,8 +16,8 @@ find_package(Eigen3 3.3.4 CONFIG REQUIRED)
 find_package(Sophus CONFIG REQUIRED)
 
 add_executable(${PROJECT_NAME}
-  lab_6.h
-  lab_6.cpp
+  solution_pose_estimation.h
+  solution_pose_estimation.cpp
   ar_example.h
   ar_example.cpp
   feature_utils.h

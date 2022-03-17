@@ -1,7 +1,7 @@
 #include "plane_world_model.h"
 #include "feature_utils.h"
 #include "opencv2/imgproc.hpp"
-#include "opencv2/xfeatures2d.hpp"
+#include "opencv2/features2d.hpp"
 
 class PlaneReference
 {
@@ -49,7 +49,7 @@ void PlaneWorldModel::constructWorld()
   cv::cvtColor(world_image_, gray_img, cv::COLOR_BGR2GRAY);
 
   // Set up objects for detection, description and matching.
-  detector_ = cv::xfeatures2d::SURF::create();
+  detector_ = cv::ORB::create(1000);
   desc_extractor_ = detector_;
   matcher_ = cv::BFMatcher::create(desc_extractor_->defaultNorm());
 
@@ -62,21 +62,17 @@ void PlaneWorldModel::constructWorld()
   cv::Mat new_descriptors;
   desc_extractor_->compute(gray_img, keypoints, new_descriptors);
 
-  // Do matching step and ration test to remove bad points.
-  std::vector<std::vector<cv::DMatch>> matches;
-  matcher_->knnMatch(new_descriptors, new_descriptors, matches, 2);
-  std::vector<cv::DMatch> good_matches{extractGoodRatioMatches(matches, max_ratio_)};
-
   // Store points and descriptors.
   PlaneReference ref{world_image_.size(),
                      world_size_,
                      {-0.5*world_size_.width, 0.5*world_size_.height, 0.f},
                      {1.f, 0.f, 0.f},
                      {0.f, -1.f, 0.f}};
-  for (auto& match : good_matches)
+
+  for (int i = 0; i < static_cast<int>(keypoints.size()); ++i)
   {
-    world_points_.push_back(ref.pixelToWorld(keypoints[match.queryIdx].pt));
-    descriptors_.push_back(new_descriptors.row(match.queryIdx));
+    world_points_.push_back(ref.pixelToWorld(keypoints[i].pt));
+    descriptors_.push_back(new_descriptors.row(i));
   }
 }
 

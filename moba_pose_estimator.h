@@ -4,8 +4,8 @@
 #include "camera_projection_measurement.h"
 
 /// \brief Iterative pose estimator for calibrated camera with 3D-2D correspondences.
-/// This pose estimator need another pose estimator,
-/// which it will use to initialize estimate and find inliers.
+/// This pose estimator needs another pose estimator,
+/// which it will use to initialise the estimate and find inliers.
 class MobaPoseEstimator : public PoseEstimator
 {
 public:
@@ -18,8 +18,8 @@ public:
       const Eigen::Vector2d& focal_lengths);
 
   /// \brief Estimates camera pose from 3D-2D correspondences.
-  /// \param image_points 2D image points.
-  /// \param world_points 3D planar world points.
+  /// \param image_points 2D image points in pixels.
+  /// \param world_points 3D world points.
   /// \return The results. Check PoseEstimate::isFound() to check if solution was found.
   PoseEstimate estimate(const std::vector<cv::Point2f>& image_points,
                         const std::vector<cv::Point3f>& world_points) override;
