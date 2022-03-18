@@ -1,4 +1,5 @@
 #include "moba_pose_estimator.h"
+#include <iostream>
 
 MobaPoseEstimator::MobaPoseEstimator(PoseEstimator::Ptr initial_pose_estimator,
                                      const Eigen::Vector2d& principal_point,
