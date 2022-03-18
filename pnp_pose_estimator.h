@@ -3,8 +3,8 @@
 #include "pose_estimator.h"
 
 /// \brief PnP-based pose estimator for calibrated camera with 3D-2D correspondences.
-/// This pose estimator first computes an intial result and extracts an inlier set using PnP,
-/// then estimates the pose from the entire inlier set using an iterative method.
+/// This pose estimator first computes an initial result and extracts an inlier set using PnP.
+/// Then it optionally estimates the pose from the entire inlier set using an iterative method.
 class PnPPoseEstimator : public PoseEstimator
 {
 public:
