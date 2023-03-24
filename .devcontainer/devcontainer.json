@@ -1,0 +1,25 @@
+{
+  "name": "tek5030 solution-pose-estimation",
+  "image": "tek5030/dev-container",
+  "runArgs": ["--rm"],
+  "containerEnv": {
+    "DISPLAY": "${localEnv:DISPLAY}",
+    "XDG_RUNTIME_DIR": "${localEnv:XDG_RUNTIME_DIR}"
+  },
+  "mounts": [
+    "type=bind,source=/tmp/.X11-unix,target=/tmp/.X11-unix",
+    "type=bind,source=${localEnv:XAUTHORITY},target=${localEnv:XAUTHORITY}",
+    "type=bind,source=${localEnv:XDG_RUNTIME_DIR},target=${localEnv:XDG_RUNTIME_DIR}"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cmake-tools",
+        "ms-vscode.cpptools-extension-pack",
+        "azuretools.vscode-docker"
+      ]
+    }
+  },
+  "privileged": true
+}
