@@ -16,7 +16,7 @@ Scene3D::Scene3D(const PlaneWorldModel& world)
                                                       {0.0, -1.0, 0.0}));
 }
 
-void Scene3D::update(const cv::Mat& image, const PoseEstimate& estimate, const Eigen::Matrix3d& K)
+bool Scene3D::update(const cv::Mat& image, const PoseEstimate& estimate, const Eigen::Matrix3d& K)
 {
   // Extract a reference to the camera pose.
   const auto& pose = estimate.pose_W_C;
@@ -43,4 +43,6 @@ void Scene3D::update(const cv::Mat& image, const PoseEstimate& estimate, const E
   }
 
   vis_3d_.spinOnce();
+
+  return vis_3d_.wasStopped();
 }
