@@ -16,7 +16,8 @@ public:
   /// \param image Current frame.
   /// \param estimate Current pose estimate.
   /// \param K Current camera calibration matrix.
-  void update(const cv::Mat& image, const PoseEstimate& estimate, const Eigen::Matrix3d& K);
+  /// \returns true if the window was closed ('q' was pressed)
+  bool update(const cv::Mat& image, const PoseEstimate& estimate, const Eigen::Matrix3d& K);
 
 private:
   cv::viz::Viz3d vis_3d_;
